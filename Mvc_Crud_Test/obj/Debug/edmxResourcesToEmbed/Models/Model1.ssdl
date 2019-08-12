@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OfficeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="OfficeModelStoreContainer">
+    <EntitySet Name="EmployeeDetails" EntityType="OfficeModel.Store.EmployeeDetails" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Registration" EntityType="OfficeModel.Store.Registration" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TblCountry" EntityType="OfficeModel.Store.TblCountry" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tblstate" EntityType="OfficeModel.Store.Tblstate" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Tblstate_TblCountry1" Association="OfficeModel.Store.FK_Tblstate_TblCountry1">
+      <End Role="TblCountry" EntitySet="TblCountry" />
+      <End Role="Tblstate" EntitySet="Tblstate" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="EmployeeDetails">
+    <Key>
+      <PropertyRef Name="empid" />
+    </Key>
+    <Property Name="empid" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Addr" Type="varchar" MaxLength="50" />
+    <Property Name="Phno" Type="varchar" MaxLength="50" />
+    <Property Name="Sal" Type="int" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="Gen" Type="varchar" MaxLength="50" />
+    <Property Name="Dep" Type="varchar" MaxLength="50" />
+    <Property Name="Cmp" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Registration">
+    <Key>
+      <PropertyRef Name="Mailid" />
+    </Key>
+    <Property Name="Mailid" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Pwd" Type="varchar" MaxLength="50" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Adr" Type="varchar" MaxLength="50" />
+    <Property Name="Phno" Type="varchar" MaxLength="50" />
+    <Property Name="Pin" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="Gen" Type="varchar" MaxLength="50" />
+    <Property Name="Upic" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="TblCountry">
+    <Key>
+      <PropertyRef Name="Cid" />
+    </Key>
+    <Property Name="Cid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Cname" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Tblstate">
+    <Key>
+      <PropertyRef Name="Sid" />
+    </Key>
+    <Property Name="Sid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Sname" Type="varchar" MaxLength="50" />
+    <Property Name="Cid" Type="int" />
+  </EntityType>
+  <Association Name="FK_Tblstate_TblCountry1">
+    <End Role="TblCountry" Type="OfficeModel.Store.TblCountry" Multiplicity="0..1" />
+    <End Role="Tblstate" Type="OfficeModel.Store.Tblstate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblCountry">
+        <PropertyRef Name="Cid" />
+      </Principal>
+      <Dependent Role="Tblstate">
+        <PropertyRef Name="Cid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

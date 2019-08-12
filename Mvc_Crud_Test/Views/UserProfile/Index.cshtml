@@ -1,0 +1,96 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Css/bootstrap.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div style="float:right">
+        Welcome:<label>@ViewBag.list</label>@Html.ActionLink("Logout", "logout", "UserLogin")
+    </div>
+    <div class="container">
+        <input type="hidden" id="Txtide" />
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" id="Txtnm" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Address:</label>
+            <input type="text" id="Txtadr" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Contact Number:</label>
+            <input type="text" id="Txtph" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Pincode:</label>
+            <input type="text" id="Txtpin" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>City:</label>
+            <input type="text" id="Txtcity" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Address:</label>
+            <input type="text" id="Txtgen" class="form-control" />
+        </div>
+        <div class="form-group">
+            <button type="button" id="Btnupdate" class="btn btn-success">Update</button>
+            <label id="Lblmsg"></label>
+        </div>
+
+    </div>
+    <script src="~/Js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ShowUserDetails","UserProfile")',
+                datatype: JSON,
+                success: function (d) {
+                    $("#Txtide").val(d.Mailid);
+                    $("#Txtnm").val(d.Name);
+                    $("#Txtadr").val(d.Adr);
+                    $("#Txtph").val(d.Phno);
+                    $("#Txtpin").val(d.Pin);
+                    $("#Txtcity").val(d.City);
+                    $("#Txtgen").val(d.Gen);
+                },
+                error: function () {
+                    alert("Error!!");
+                }
+            });
+        });
+        $(document).on('click', '#Btnupdate', function () {
+            var mailide = $("#Txtide").val();
+            var Name = $("#Txtnm").val();
+            var Addr = $("#Txtadr").val();
+            var Phno = $("#Txtph").val();
+            var Pin = $("#Txtpin").val();
+            var City = $("#Txtcity").val();
+            var Gen = $("#Txtgen").val();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("UpdateUserDetails","UserProfile")',
+                data: { "Mailid": mailide, "Nm": Name, "Adr": Addr, "Ph": Phno, "Pin": Pin, "City": City, "Gen": Gen },
+                datatype: JSON,
+                success: function (d) {
+                    if (d == "Success") {
+                        $("#Lblmsg").text("Update Successfull");
+                    }
+
+                },
+                error: function () {
+                    alert("Error");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

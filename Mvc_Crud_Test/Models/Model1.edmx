@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OfficeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="OfficeModelStoreContainer">
+          <EntitySet Name="EmployeeDetails" EntityType="OfficeModel.Store.EmployeeDetails" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Registration" EntityType="OfficeModel.Store.Registration" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TblCountry" EntityType="OfficeModel.Store.TblCountry" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tblstate" EntityType="OfficeModel.Store.Tblstate" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Tblstate_TblCountry1" Association="OfficeModel.Store.FK_Tblstate_TblCountry1">
+            <End Role="TblCountry" EntitySet="TblCountry" />
+            <End Role="Tblstate" EntitySet="Tblstate" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="EmployeeDetails">
+          <Key>
+            <PropertyRef Name="empid" />
+          </Key>
+          <Property Name="empid" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Addr" Type="varchar" MaxLength="50" />
+          <Property Name="Phno" Type="varchar" MaxLength="50" />
+          <Property Name="Sal" Type="int" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="Gen" Type="varchar" MaxLength="50" />
+          <Property Name="Dep" Type="varchar" MaxLength="50" />
+          <Property Name="Cmp" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="Mailid" />
+          </Key>
+          <Property Name="Mailid" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Pwd" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Adr" Type="varchar" MaxLength="50" />
+          <Property Name="Phno" Type="varchar" MaxLength="50" />
+          <Property Name="Pin" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="Gen" Type="varchar" MaxLength="50" />
+          <Property Name="Upic" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="TblCountry">
+          <Key>
+            <PropertyRef Name="Cid" />
+          </Key>
+          <Property Name="Cid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Cname" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tblstate">
+          <Key>
+            <PropertyRef Name="Sid" />
+          </Key>
+          <Property Name="Sid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Sname" Type="varchar" MaxLength="50" />
+          <Property Name="Cid" Type="int" />
+        </EntityType>
+        <Association Name="FK_Tblstate_TblCountry1">
+          <End Role="TblCountry" Type="OfficeModel.Store.TblCountry" Multiplicity="0..1" />
+          <End Role="Tblstate" Type="OfficeModel.Store.Tblstate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblCountry">
+              <PropertyRef Name="Cid" />
+            </Principal>
+            <Dependent Role="Tblstate">
+              <PropertyRef Name="Cid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OfficeModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="OfficeEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="EmployeeDetails" EntityType="OfficeModel.EmployeeDetails" />
+          <EntitySet Name="Registration" EntityType="OfficeModel.Registration" />
+          <EntitySet Name="TblCountry" EntityType="OfficeModel.TblCountry" />
+          <EntitySet Name="Tblstate" EntityType="OfficeModel.Tblstate" />
+          <AssociationSet Name="FK_Tblstate_TblCountry1" Association="OfficeModel.FK_Tblstate_TblCountry1">
+            <End Role="TblCountry" EntitySet="TblCountry" />
+            <End Role="Tblstate" EntitySet="Tblstate" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="EmployeeDetails">
+          <Key>
+            <PropertyRef Name="empid" />
+          </Key>
+          <Property Name="empid" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Addr" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Phno" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Sal" Type="Int32" />
+          <Property Name="City" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Gen" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Dep" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Cmp" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="Mailid" />
+          </Key>
+          <Property Type="String" Name="Mailid" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Pwd" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Adr" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Phno" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Pin" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Gen" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Upic" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TblCountry">
+          <Key>
+            <PropertyRef Name="Cid" />
+          </Key>
+          <Property Type="Int32" Name="Cid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Cname" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tblstate" Relationship="OfficeModel.FK_Tblstate_TblCountry1" FromRole="TblCountry" ToRole="Tblstate" />
+        </EntityType>
+        <EntityType Name="Tblstate">
+          <Key>
+            <PropertyRef Name="Sid" />
+          </Key>
+          <Property Type="Int32" Name="Sid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Sname" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Cid" />
+          <NavigationProperty Name="TblCountry" Relationship="OfficeModel.FK_Tblstate_TblCountry1" FromRole="Tblstate" ToRole="TblCountry" />
+        </EntityType>
+        <Association Name="FK_Tblstate_TblCountry1">
+          <End Type="OfficeModel.TblCountry" Role="TblCountry" Multiplicity="0..1" />
+          <End Type="OfficeModel.Tblstate" Role="Tblstate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblCountry">
+              <PropertyRef Name="Cid" />
+            </Principal>
+            <Dependent Role="Tblstate">
+              <PropertyRef Name="Cid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OfficeModelStoreContainer" CdmEntityContainer="OfficeEntities">
+          <EntitySetMapping Name="EmployeeDetails">
+            <EntityTypeMapping TypeName="OfficeModel.EmployeeDetails">
+              <MappingFragment StoreEntitySet="EmployeeDetails">
+                <ScalarProperty Name="empid" ColumnName="empid" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Addr" ColumnName="Addr" />
+                <ScalarProperty Name="Phno" ColumnName="Phno" />
+                <ScalarProperty Name="Sal" ColumnName="Sal" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Gen" ColumnName="Gen" />
+                <ScalarProperty Name="Dep" ColumnName="Dep" />
+                <ScalarProperty Name="Cmp" ColumnName="Cmp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Registration">
+            <EntityTypeMapping TypeName="OfficeModel.Registration">
+              <MappingFragment StoreEntitySet="Registration">
+                <ScalarProperty Name="Upic" ColumnName="Upic" />
+                <ScalarProperty Name="Gen" ColumnName="Gen" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Pin" ColumnName="Pin" />
+                <ScalarProperty Name="Phno" ColumnName="Phno" />
+                <ScalarProperty Name="Adr" ColumnName="Adr" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+                <ScalarProperty Name="Mailid" ColumnName="Mailid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblCountry">
+            <EntityTypeMapping TypeName="OfficeModel.TblCountry">
+              <MappingFragment StoreEntitySet="TblCountry">
+                <ScalarProperty Name="Cname" ColumnName="Cname" />
+                <ScalarProperty Name="Cid" ColumnName="Cid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tblstate">
+            <EntityTypeMapping TypeName="OfficeModel.Tblstate">
+              <MappingFragment StoreEntitySet="Tblstate">
+                <ScalarProperty Name="Cid" ColumnName="Cid" />
+                <ScalarProperty Name="Sname" ColumnName="Sname" />
+                <ScalarProperty Name="Sid" ColumnName="Sid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

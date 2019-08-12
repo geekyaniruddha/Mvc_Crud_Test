@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OfficeModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="OfficeEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="EmployeeDetails" EntityType="OfficeModel.EmployeeDetails" />
+    <EntitySet Name="Registration" EntityType="OfficeModel.Registration" />
+    <EntitySet Name="TblCountry" EntityType="OfficeModel.TblCountry" />
+    <EntitySet Name="Tblstate" EntityType="OfficeModel.Tblstate" />
+    <AssociationSet Name="FK_Tblstate_TblCountry1" Association="OfficeModel.FK_Tblstate_TblCountry1">
+      <End Role="TblCountry" EntitySet="TblCountry" />
+      <End Role="Tblstate" EntitySet="Tblstate" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="EmployeeDetails">
+    <Key>
+      <PropertyRef Name="empid" />
+    </Key>
+    <Property Name="empid" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Addr" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Phno" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Sal" Type="Int32" />
+    <Property Name="City" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Gen" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Dep" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Cmp" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Registration">
+    <Key>
+      <PropertyRef Name="Mailid" />
+    </Key>
+    <Property Type="String" Name="Mailid" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Pwd" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Adr" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Phno" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Pin" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Gen" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Upic" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TblCountry">
+    <Key>
+      <PropertyRef Name="Cid" />
+    </Key>
+    <Property Type="Int32" Name="Cid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Cname" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Tblstate" Relationship="OfficeModel.FK_Tblstate_TblCountry1" FromRole="TblCountry" ToRole="Tblstate" />
+  </EntityType>
+  <EntityType Name="Tblstate">
+    <Key>
+      <PropertyRef Name="Sid" />
+    </Key>
+    <Property Type="Int32" Name="Sid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Sname" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="Cid" />
+    <NavigationProperty Name="TblCountry" Relationship="OfficeModel.FK_Tblstate_TblCountry1" FromRole="Tblstate" ToRole="TblCountry" />
+  </EntityType>
+  <Association Name="FK_Tblstate_TblCountry1">
+    <End Type="OfficeModel.TblCountry" Role="TblCountry" Multiplicity="0..1" />
+    <End Type="OfficeModel.Tblstate" Role="Tblstate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblCountry">
+        <PropertyRef Name="Cid" />
+      </Principal>
+      <Dependent Role="Tblstate">
+        <PropertyRef Name="Cid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

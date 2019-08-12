@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OfficeModelStoreContainer" CdmEntityContainer="OfficeEntities">
+    <EntitySetMapping Name="EmployeeDetails">
+      <EntityTypeMapping TypeName="OfficeModel.EmployeeDetails">
+        <MappingFragment StoreEntitySet="EmployeeDetails">
+          <ScalarProperty Name="empid" ColumnName="empid" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Addr" ColumnName="Addr" />
+          <ScalarProperty Name="Phno" ColumnName="Phno" />
+          <ScalarProperty Name="Sal" ColumnName="Sal" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Gen" ColumnName="Gen" />
+          <ScalarProperty Name="Dep" ColumnName="Dep" />
+          <ScalarProperty Name="Cmp" ColumnName="Cmp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Registration">
+      <EntityTypeMapping TypeName="OfficeModel.Registration">
+        <MappingFragment StoreEntitySet="Registration">
+          <ScalarProperty Name="Upic" ColumnName="Upic" />
+          <ScalarProperty Name="Gen" ColumnName="Gen" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Pin" ColumnName="Pin" />
+          <ScalarProperty Name="Phno" ColumnName="Phno" />
+          <ScalarProperty Name="Adr" ColumnName="Adr" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+          <ScalarProperty Name="Mailid" ColumnName="Mailid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblCountry">
+      <EntityTypeMapping TypeName="OfficeModel.TblCountry">
+        <MappingFragment StoreEntitySet="TblCountry">
+          <ScalarProperty Name="Cname" ColumnName="Cname" />
+          <ScalarProperty Name="Cid" ColumnName="Cid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tblstate">
+      <EntityTypeMapping TypeName="OfficeModel.Tblstate">
+        <MappingFragment StoreEntitySet="Tblstate">
+          <ScalarProperty Name="Cid" ColumnName="Cid" />
+          <ScalarProperty Name="Sname" ColumnName="Sname" />
+          <ScalarProperty Name="Sid" ColumnName="Sid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

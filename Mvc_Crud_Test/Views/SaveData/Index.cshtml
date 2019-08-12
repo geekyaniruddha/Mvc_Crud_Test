@@ -1,0 +1,103 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Css/bootstrap.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div class="container">
+        <div class="form-group">
+            <label>Enter EmployeeID:</label>
+            <input type="text" id="Txtide" class="form-control" placeholder="Your ID" />
+        </div>
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" id="Txtnm" class="form-control" placeholder="Your Name" />
+        </div>
+        <div class="form-group">
+            <label>Address:</label>
+            <input type="text" id="Txtaddr" class="form-control" placeholder="Your Address" />
+        </div>
+        <div class="form-group">
+            <label>Contact Number:</label>
+            <input type="text" id="Txtph" class="form-control" placeholder="Your ContactNumber" />
+        </div>
+        <div class="form-group">
+            <label>Salary:</label>
+            <input type="text" id="Txtsal" class="form-control" placeholder="Your Salary" />
+        </div>
+        <div class="form-group">
+            <label>Select City:</label>
+            <select id="ddlcity" class="form-control">
+                <option value="0">...Select City...</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Durgapur">Durgapur</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Select Gender:</label>
+            <input type="radio" name="gender" value="M" />M
+            <input type="radio" name="gender" value="F" />F
+        </div>
+        <div class="form-group">
+            <label>Department:</label>
+            <input type="text" id="Txtdep" class="form-control" placeholder="Your Department" />
+        </div>
+        <div class="form-group">
+            <label>Company:</label>
+            <input type="text" id="Txtcmp" class="form-control" placeholder="Your Company" />
+        </div>
+        <div class="form-group">
+            <button type="button" id="Btnsave" class="btn btn-primary">Submit</button>
+            <label id="Lblmsg"></label>
+        </div>
+    </div>
+    <script src="~/Js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).on('click', '#Btnsave', function () {
+            var Ide = $("#Txtide").val();
+            var Name = $("#Txtnm").val();
+            var Adr = $("#Txtaddr").val();
+            var Phno = $("#Txtph").val();
+            var Sal = $("#Txtsal").val();
+            var City = $("#ddlcity option:selected").val();
+            var Gen = $("input[type='radio'][name='gender']:checked").val();
+            var dep = $("#Txtdep").val();
+            var Cmp = $("#Txtcmp").val();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("SaveRegistration","SaveData")',
+                data: { "Empide": Ide, "Nm": Name, "Addr": Adr, "Ph": Phno, "Sal": Sal, "City": City, "Gen": Gen, "Dept": dep, "Cmp": Cmp },
+                datatype: JSON,
+                success: function (data) {
+                    if (data == "Success") {
+                        $("#Lblmsg").text("Data Insert Successfull");
+                        ClearAll();
+                    }
+                },
+                error: function () {
+                    alert("Error!!");
+                }
+            });
+        });
+
+        function ClearAll() {
+            $("#Txtide").val('');
+            $("#Txtnm").val('');
+            $("#Txtaddr").val('');
+            $("#Txtph").val('');
+            $("#Txtsal").val('');
+            $("#Txtdep").val('');
+            $("#Txtcmp").val('');
+            $("#ddlcity").val(0);
+            $("input[type='radio'][name='gender']").prop("checked", false);
+        }
+    </script>
+</body>
+</html>

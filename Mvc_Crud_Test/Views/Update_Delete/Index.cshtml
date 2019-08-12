@@ -1,0 +1,146 @@
+﻿@model Mvc_Crud_Test.Models.Homemodel
+@{
+    var p = ViewBag.list;
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Css/bootstrap.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div class="container">
+        @if (p != null)
+        {
+            <table class="table table-striped">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Contact Number</th>
+                    <th>Salary</th>
+                    <th>City</th>
+                    <th>Gender</th>
+                    <th>Department</th>
+                    <th>Company</th>
+                    <th>Action</th>
+                    <th>Action</th>
+                </tr>
+                @foreach (var str in p)
+                {
+                    <tr>
+                        <td>@str.empid</td>
+                        <td>@str.Name</td>
+                        <td>@str.Addr</td>
+                        <td>@str.Phno</td>
+                        <td>@str.Sal</td>
+                        <td>@str.City</td>
+                        <td>@str.Gen</td>
+                        <td>@str.Dep</td>
+                        <td>@str.Cmp</td>
+                        <td><button type="button" id="Btnedit" class="btn btn-info" data="@str.empid">Edit</button></td>
+                        <td><button type="button" id="Btndel" class="btn btn-danger" data="@str.empid">Delete</button></td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+    @using (Html.BeginForm("Index", "Update_Delete", FormMethod.Post))
+    {
+        <div class="container" id="d2">
+            @Html.HiddenFor(M => M.empdt.empid, new {@id="Txtide" })
+            <div class="form-group">
+                <label>Name:</label>
+                @Html.TextBoxFor(M => M.empdt.Name, new {@id="Txtnm",@class="form-control" })
+            </div>
+            <div class="form-group">
+                <label>Address:</label>
+                @Html.TextBoxFor(M => M.empdt.Addr, new {@id="Txtadr",@class="form-control" })
+            </div>
+            <div class="form-group">
+                <label>Contact Number:</label>
+                @Html.TextBoxFor(M => M.empdt.Phno, new {@id="Txtph",@class="form-control" })
+            </div>
+            <div class="form-group">
+                <label>Salary:</label>
+                @Html.TextBoxFor(M => M.empdt.Sal, new {@id="Txtsal",@class="form-control" })
+            </div>
+            <div class="form-group">
+                <label>City:</label>
+                @Html.TextBoxFor(M => M.empdt.City, new {@id="Txtcity",@class="form-control" })
+            </div>
+            <div class="form-group">
+                <label>Gender:</label>
+                @Html.TextBoxFor(M => M.empdt.Gen, new {@id="Txtgen",@class="form-control" })
+            </div>
+            <div class="form-group">
+                <label>Department:</label>
+                @Html.TextBoxFor(M => M.empdt.Dep, new {@id="Txtdep",@class="form-control" })
+            </div>
+            <div class="form-group">
+                <label>Company:</label>
+                @Html.TextBoxFor(M => M.empdt.Cmp, new {@id="Txtcmp",@class="form-control" })
+            </div>
+             <div class="form-group">
+                <button type="submit" id="Btnupdate" class="btn btn-primary">Update</button>
+                 <label id="Lblmsg"></label>
+            </div>
+        </div>
+    }
+    <script src="~/Js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#d2").hide();
+        });
+
+        $(document).on('click', '#Btnedit', function () {
+            $("#d2").show();
+            var Ide = $(this).attr("data");
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetUser","Update_Delete")',
+                data: { "Empide": Ide },
+                datatype: JSON,
+                success: function (data) {
+                    $("#Txtide").val(data.empid);
+                    $("#Txtnm").val(data.Name);
+                    $("#Txtadr").val(data.Addr);
+                    $("#Txtph").val(data.Phno);
+                    $("#Txtsal").val(data.Sal);
+                    $("#Txtcity").val(data.City);
+                    $("#Txtgen").val(data.Gen);
+                    $("#Txtdep").val(data.Dep);
+                    $("#Txtcmp").val(data.Cmp);
+                },
+                error: function () {
+                    alert("Error");
+                }
+
+            });
+        });
+
+        $(document).on('click', '#Btndel', function () {
+            var Ide = $(this).attr("data");
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("DeleteUser","Update_Delete")',
+                data: { "Ide": Ide },
+                datatype: JSON,
+                success: function (d) {
+                    if (d == "Success") {
+                        alert("Delete Successfull");
+
+                    }
+                },
+                error: function () {
+                    alert("Error!!");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

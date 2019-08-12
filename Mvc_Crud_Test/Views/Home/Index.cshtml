@@ -1,0 +1,64 @@
+﻿@model Mvc_Crud_Test.Models.Homemodel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Css/bootstrap.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @Html.ActionLink("ShowDetails", "Index", "Show")<br />
+     @Html.ActionLink("SearchByID", "Index", "SearchID")<br />
+    @using(Html.BeginForm("Index","Home",FormMethod.Post))
+    {
+    <div class="container">
+        <div class="form-group">
+            <label>Enter EmployeeID:</label>
+            @Html.TextBoxFor(M => M.empdt.empid, new {@id="Txtide",@class="form-control",@placeholder="Your ID" })
+        </div>
+        <div class="form-group">
+            <label>Name:</label>
+            @Html.TextBoxFor(M => M.empdt.Name, new {@id="Txtnm",@class="form-control",@placeholder="Your Name" })
+        </div>
+        <div class="form-group">
+            <label>Address:</label>
+            @Html.TextBoxFor(M => M.empdt.Addr, new {@id="Txtadr",@class="form-control",@placeholder="Your Address" })
+        </div>
+        <div class="form-group">
+            <label>Contact Number:</label>
+            @Html.TextBoxFor(M => M.empdt.Phno, new {@id="Txtph",@class="form-control",@placeholder="Your ContactNumber" })
+        </div>
+        <div class="form-group">
+            <label>Salary:</label>
+            @Html.TextBoxFor(M => M.empdt.Sal, new {@id="Txtsal",@class="form-control",@placeholder="Your Salary" })
+        </div>
+        <div class="form-group">
+            <label>City:</label>
+            @Html.TextBoxFor(M => M.empdt.City, new {@id="Txtcity",@class="form-control",@placeholder="Your City" })
+        </div>
+        <div class="form-group">
+            <label>Gender:</label>
+            @Html.TextBoxFor(M => M.empdt.Gen, new {@id="Txtgen",@class="form-control",@placeholder="Your Gender" })
+        </div>
+        <div class="form-group">
+            <label>Department:</label>
+            @Html.TextBoxFor(M => M.empdt.Dep, new {@id="Txtdep",@class="form-control",@placeholder="Your Department" })
+        </div>
+        <div class="form-group">
+            <label>Company:</label>
+            @Html.TextBoxFor(M => M.empdt.Cmp, new {@id="Txtcmp",@class="form-control",@placeholder="Your Company" })
+        </div>   
+        <div class="form-group">
+            <button type="submit" id="Btnsave" class="btn btn-primary">Submit</button>
+            
+            <label id="Lblmsg">@ViewBag.msg</label>
+        </div>     
+    </div>
+    }
+</body>
+</html>

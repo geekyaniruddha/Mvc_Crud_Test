@@ -1,0 +1,32 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Css/bootstrap.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @using(Html.BeginForm("Index","UserLogin",FormMethod.Post))
+    {
+    <div class="container">
+        <div class="form-group">
+            <label>Enter MailID:</label>
+            @Html.TextBox("Mailide", null, new {@id="Txtmailide",@class="form-control",@placeholder="Your MailID" })
+        </div>
+        <div class="form-group">
+            <label>Enter Password:</label>
+            @Html.Password("Pwd", null, new {@id="Txtpwd",@class="form-control",@placeholder="Your Password" })
+        </div>
+        <div class="form-group">
+           <button type="submit" id="Btnlog" class="btn btn-primary">Login</button>
+            <label id="Lblmsg">@ViewBag.msg</label>
+        </div>
+    </div>
+    }
+</body>
+</html>

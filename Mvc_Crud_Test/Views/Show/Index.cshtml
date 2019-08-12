@@ -1,0 +1,48 @@
+﻿@{
+    var p = ViewBag.list;
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Css/bootstrap.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div class="container">
+        @if (p != null)
+        {
+            <table class="table table-striped">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Contact Number</th>
+                    <th>Salary</th>
+                    <th>City</th>
+                    <th>Gender</th>
+                    <th>Department</th>
+                    <th>Company</th>
+                </tr>
+                @foreach (var str in p)
+                {
+                    <tr>
+                        <td>@str.empid</td>
+                        <td>@str.Name</td>
+                        <td>@str.Addr</td>
+                        <td>@str.Phno</td>
+                        <td>@str.Sal</td>
+                        <td>@str.City</td>
+                        <td>@str.Gen</td>
+                        <td>@str.Dep</td>
+                        <td>@str.Cmp</td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+</body>
+</html>

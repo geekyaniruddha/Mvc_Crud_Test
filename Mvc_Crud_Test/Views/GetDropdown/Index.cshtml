@@ -1,0 +1,45 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Css/bootstrap.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div class="container">
+        <div class="form-group">
+            <label>Select Country</label>
+            @Html.DropDownList("ddlcountry", ViewBag.list as SelectList, "Select Country", new {@class="form-control" })
+        </div>
+        <div class="form-group">
+            <select id="ddlstate" class="form-control">
+                <option value="0">select</option>
+            </select>
+        </div>
+    </div>
+    <script src="~/Js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).on('change', '#ddlcountry', function () {
+            var cide = $(this).val();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Getstate","GetDropdown")',
+                data: { "cide": cide },
+                datatype: "json",
+                success: function (data) {
+                    $("#ddlstate").empty();
+                    $("#ddlstate").append('<option value="0">select</option>');
+                    $.each(data, function (Index,Value) {
+                        $("#ddlstate").append('<option value="' + Value.Sid + '">' + Value.Sname+'</option>');
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
